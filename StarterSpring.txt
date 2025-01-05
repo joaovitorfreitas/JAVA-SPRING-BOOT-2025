@@ -1,0 +1,15 @@
+Starter WEB
+	API'Rest
+Starter Data JPA
+	JPA (Existem outros starters) - (ORM - MAPEAR OBJETO)
+Starter Security
+	Spring Security
+Starter Test
+	JUnit - mockit
+Starter Validation
+	Bean Validation
+
+
+- SPRING FRAMEWORK - para aplicações complexas.
+- SPRING BOOT - através de configurations.
+- BEANS - Definição de objetos de configuração.
