@@ -1,0 +1,18 @@
+## Criando um YML substituindo as antigas properties.
+## Criando banco em memória - config necessárias.
+
+spring:
+  application:
+    name: Produtos API
+  datasource:
+    url: jdbc:h2:mem:produtos
+    username: sa
+    password: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 8082
