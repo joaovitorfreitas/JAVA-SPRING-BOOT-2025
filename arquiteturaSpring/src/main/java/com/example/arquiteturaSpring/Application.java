@@ -19,6 +19,10 @@ public class Application {
 		builder.bannerMode(Banner.Mode.OFF);
 		// Perfil de startar a aplicação
 		builder.profiles("producao", "homologacao");
+		//Define lazy true ou false;
+		//builder.lazyInitialization(true);
+
+
 		builder.run(args);
 
 		//Contexto da aplicação ja iniciada
@@ -28,6 +32,13 @@ public class Application {
 		ConfigurableEnvironment environment = applicationContext.getEnvironment();
 		String applicationName = environment.getProperty("spring.application.name");
 		System.out.println("nome da aplicação: " + applicationName);
+
+		ExemploValue value = applicationContext.getBean(ExemploValue.class);
+		value.imprimirVariavel();
+
+		AppProperties App = applicationContext.getBean(AppProperties.class);
+		System.out.println(App.getValor());
+
 	}
 
 }

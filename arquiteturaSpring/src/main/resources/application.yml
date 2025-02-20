@@ -1,5 +1,14 @@
 spring:
+  jpa:
+    show-sql: true
   application:
     name: arquiteturaSpring
 server:
   port: 8082
+
+app:
+  montadora:
+    motor-padrao: 130
+  config:
+    variavel: X
+    valor: 500

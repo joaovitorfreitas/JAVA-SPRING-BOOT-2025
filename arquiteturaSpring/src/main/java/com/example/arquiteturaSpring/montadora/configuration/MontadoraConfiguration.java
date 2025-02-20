@@ -4,16 +4,18 @@ import com.example.arquiteturaSpring.montadora.Motor;
 import com.example.arquiteturaSpring.montadora.TipoMotor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class MontadoraConfiguration {
     @Bean(name = "motorAspirado")
+    //@Primary Dizendo que é o padrão
     public Motor motorAspirado(){
         var motor = new Motor();
         motor.setCavalos(120);
         motor.setCilindros(4);
         motor.setModelo("XPTO-0");
-        motor.setLitragem(1.6);
+        motor.setLitragem(20.0);
         motor.setTipo(TipoMotor.ASPIRADO);
         return motor;
     }
@@ -25,17 +27,18 @@ public class MontadoraConfiguration {
         motor.setCilindros(3);
         motor.setModelo("TH-10");
         motor.setLitragem(1.4);
-        motor.setTipo(TipoMotor.ASPIRADO);
+        motor.setTipo(TipoMotor.ELETRICO);
         return motor;
     }
     @Bean(name = "motorTurbo")
+    @Primary
     public Motor motorTurbo(){
         var motor = new Motor();
         motor.setCavalos(180);
         motor.setCilindros(4);
         motor.setModelo("XPTO-01");
         motor.setLitragem(1.5);
-        motor.setTipo(TipoMotor.ASPIRADO);
+        motor.setTipo(TipoMotor.TURBO);
         return motor;
     }
 }
