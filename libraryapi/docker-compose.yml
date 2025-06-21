@@ -1,0 +1,19 @@
+version: "3"
+services:
+  Database-Postgre:
+    image: 'postgres:16'
+    container_name: Database-Postgre-web
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: library
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+
+
+volumes:
+  postgres_data:

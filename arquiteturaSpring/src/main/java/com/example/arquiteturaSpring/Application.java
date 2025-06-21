@@ -10,35 +10,35 @@ import org.springframework.core.env.ConfigurableEnvironment;
 @SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
-		//SpringApplication.run(Application.class, args);
+    public static void main(String[] args) {
+        //SpringApplication.run(Application.class, args);
 
-		//Mudando o modo de startar a aplicação, criando um builder.
-		//Mesma coisa de utilizar o "SpringApplication.run()";
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class);
-		builder.bannerMode(Banner.Mode.OFF);
-		// Perfil de startar a aplicação
-		builder.profiles("producao", "homologacao");
-		//Define lazy true ou false;
-		//builder.lazyInitialization(true);
+        //Mudando o modo de startar a aplicação, criando um builder.
+        //Mesma coisa de utilizar o "SpringApplication.run()";
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(Application.class);
+        builder.bannerMode(Banner.Mode.OFF);
+        // Perfil de startar a aplicação
+        builder.profiles("producao", "homologacao");
+        //Define lazy true ou false;
+        //builder.lazyInitialization(true);
 
 
-		builder.run(args);
+        builder.run(args);
 
-		//Contexto da aplicação ja iniciada
-		ConfigurableApplicationContext applicationContext = builder.context();
-		//var produtoRepository = applicationContext.getBean("produtoRepository");
+        //Contexto da aplicação ja iniciada
+        ConfigurableApplicationContext applicationContext = builder.context();
+        //var produtoRepository = applicationContext.getBean("produtoRepository");
 
-		ConfigurableEnvironment environment = applicationContext.getEnvironment();
-		String applicationName = environment.getProperty("spring.application.name");
-		System.out.println("nome da aplicação: " + applicationName);
+        ConfigurableEnvironment environment = applicationContext.getEnvironment();
+        String applicationName = environment.getProperty("spring.application.name");
+        System.out.println("nome da aplicação: " + applicationName);
 
-		ExemploValue value = applicationContext.getBean(ExemploValue.class);
-		value.imprimirVariavel();
+        ExemploValue value = applicationContext.getBean(ExemploValue.class);
+        value.imprimirVariavel();
 
-		AppProperties App = applicationContext.getBean(AppProperties.class);
-		System.out.println(App.getValor());
+        AppProperties App = applicationContext.getBean(AppProperties.class);
+        System.out.println(App.getValor());
 
-	}
+    }
 
 }
