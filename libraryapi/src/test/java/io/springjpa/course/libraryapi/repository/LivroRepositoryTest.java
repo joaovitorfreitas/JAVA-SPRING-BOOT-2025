@@ -66,4 +66,19 @@ class LivroRepositoryTest {
         System.out.println("Autor: ");
         System.out.println(livro.getAutor().getNome());
     }
+
+    @Test
+    void pesquisaTituloTest(){
+        livroRepository.findByTitulo("ENABLE 4242").forEach(System.out::println);
+    }
+
+    @Test
+    void pesquisaIsbnTest(){
+        livroRepository.findByIsbn("1234").forEach(System.out::println);
+    }
+
+    @Test
+    void pesquisarPorTituloAndPrecO(){
+        livroRepository.findByTituloAndPreco("Livro 1", BigDecimal.valueOf(20.00)).forEach(System.out::println);
+    }
 }

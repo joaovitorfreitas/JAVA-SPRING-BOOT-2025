@@ -3,6 +3,7 @@ package io.springjpa.course.libraryapi.repository;
 import io.springjpa.course.libraryapi.model.Autor;
 import io.springjpa.course.libraryapi.model.GeneroLivro;
 import io.springjpa.course.libraryapi.model.Livro;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -74,6 +75,7 @@ public class AutorRepositoryTests {
         autorRepository.delete(autor);
     }
 
+    @Test
     void salvarAutorComLivrosTest(){
         Autor autor = new Autor();
         autor.setNome("Antonio");
@@ -89,11 +91,11 @@ public class AutorRepositoryTests {
         livro.setAutor(autor);
 
         Livro livro2 = new Livro();
-        livro.setIsbn("12345");
-        livro.setPreco(new BigDecimal("20.00"));
-        livro.setGenero(GeneroLivro.FICCAO);
-        livro.setTitulo("UNABLE 4242");
-        livro.setDataPublicacao(LocalDateTime.now());
+        livro2.setIsbn("12345");
+        livro2.setPreco(new BigDecimal("20.00"));
+        livro2.setGenero(GeneroLivro.FICCAO);
+        livro2.setTitulo("UNABLE 4242");
+        livro2.setDataPublicacao(LocalDateTime.now());
         livro2.setAutor(autor);
 
         autor.setLivros(new ArrayList<>());
@@ -102,5 +104,18 @@ public class AutorRepositoryTests {
 
         autorRepository.save(autor);
         livroRepository.saveAll(autor.getLivros());
+    }
+
+    @Test
+    //Não utilizar @Transactional para consultar livros do autor utilizando lazy no JPA.
+    void listarLivrosDoAutorTest(){
+        UUID id = UUID.fromString("0270994d-ce6c-424d-8dbe-d628b38b8d67");
+        Autor autor = autorRepository.findById(id).get() ;
+
+        //buscar livros do autor
+        List<Livro> livros = livroRepository.findByAutor(autor);
+
+        System.out.println("Livros do autor: ");
+        livros.forEach(System.out::println);
     }
 }

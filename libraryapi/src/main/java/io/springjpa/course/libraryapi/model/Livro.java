@@ -3,6 +3,7 @@ package io.springjpa.course.libraryapi.model;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.apache.logging.log4j.util.Lazy;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "livro", schema = "public")
 @Data
+@ToString(exclude = "autor")
 //Data ==
 //Getter
 //Setter
